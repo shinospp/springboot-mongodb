@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.ExampleDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -41,7 +42,9 @@ public class ExampleController {
 
     // Insert single record
     @PostMapping("/examples")
-    public Example createExample(@RequestBody Example example) {
+    public Example createExample(@RequestBody ExampleDTO exampleDto) {
+        Example example= new Example();
+        example.setName(exampleDto.name());
         return repository.save(example);
     }
 
