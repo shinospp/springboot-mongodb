@@ -38,15 +38,15 @@ public class ExampleController {
     public List<Example> getByName(@RequestParam("name") String name) {
         return repository.findByName(name);
     }
-    
-   // Insert single record
+
+    // Insert single record
     @PostMapping("/examples")
     public Example createExample(@RequestBody Example example) {
         return repository.save(example);
     }
-    
-    
-   //Delete by ID
+
+
+    //Delete by ID
     @DeleteMapping("/examples/{id}")
     public ResponseEntity<String> deleteExample(@PathVariable("id") String id) {
         if (repository.existsById(id)) {
@@ -54,19 +54,19 @@ public class ExampleController {
             return ResponseEntity.ok("Deleted successfully");
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                                 .body("Document not found with id: " + id);
+                    .body("Document not found with id: " + id);
         }
     }
-    
-   //Delete all documents with the given name
+
+    //Delete all documents with the given name
     @DeleteMapping("/examples/by-name")
     public ResponseEntity<String> deleteByName(@RequestParam("name") String name) {
-    	System.out.print(name);
+        System.out.print(name);
         List<Example> examples = repository.findByName(name);
 
         if (examples.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                                 .body("No documents found with name: " + name);
+                    .body("No documents found with name: " + name);
         }
 
         repository.deleteAll(examples);
