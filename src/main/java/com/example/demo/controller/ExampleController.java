@@ -61,7 +61,6 @@ public class ExampleController {
     //Delete all documents with the given name
     @DeleteMapping("/examples/by-name")
     public ResponseEntity<String> deleteByName(@RequestParam("name") String name) {
-        System.out.print(name);
         List<Example> examples = repository.findByName(name);
 
         if (examples.isEmpty()) {
