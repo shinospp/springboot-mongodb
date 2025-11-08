@@ -41,6 +41,7 @@ public class ExampleController {
     }
 
     // Insert single record
+    //Introduced DTO Object for request data binding
     @PostMapping("/examples")
     public Example createExample(@RequestBody ExampleDTO exampleDto) {
         Example example= new Example();
