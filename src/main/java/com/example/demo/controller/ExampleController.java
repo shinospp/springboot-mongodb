@@ -1,6 +1,10 @@
 package com.example.demo.controller;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,5 +44,41 @@ public class ExampleController {
     public Example createExample(@RequestBody Example example) {
         return repository.save(example);
     }
+    
+ // Delete by ID
+//    @DeleteMapping("/{id}")
+  //  public String deleteById(@PathVariable String id) {
+    //    if (repository.existsById(id)) {
+      //      repository.deleteById(id);
+        //    return "Document with id " + id + " deleted successfully.";
+        //} else {
+          //  return "Document with id " + id + " not found.";
+        //}
+    //}
+    
+ // Delete by ID
+    @DeleteMapping("/examples/{id}")
+    public ResponseEntity<String> deleteExample(@PathVariable("id") String id) {
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
+            return ResponseEntity.ok("Deleted successfully");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                                 .body("Document not found with id: " + id);
+        }
+    }
+    
+ // Delete all documents with the given name
+    @DeleteMapping("/examples/name")
+    public String deleteByName(@RequestParam String name) {
+        List<Example> examples = repository.findByName(name);
+        if (examples.isEmpty()) {
+            return "No documents found with name " + name;
+        }
+        repository.deleteAll(examples);
+        return examples.size() + " document(s) deleted with name " + name;
+    }
+
+
 }
 
