@@ -28,7 +28,7 @@ public class ExampleController {
         this.repository = repository;
     }
 
-    // Fetch all records
+    //Fetch all records
     @GetMapping("/examples")
     public List<Example> getAllExamples() {
         return repository.findAll();
@@ -40,7 +40,7 @@ public class ExampleController {
         return repository.findByName(name);
     }
 
-    // Insert single record
+    //Insert single record
     //Introduced DTO Object for request data binding
     @PostMapping("/examples")
     public Example createExample(@RequestBody ExampleDTO exampleDto) {
@@ -62,6 +62,7 @@ public class ExampleController {
         }
     }
 
+    
     //Delete all documents with the given name
     @DeleteMapping("/examples/by-name")
     public ResponseEntity<String> deleteByName(@RequestParam("name") String name) {
