@@ -2,6 +2,9 @@ package com.example.demo.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.example.demo.collection.Person;
 
 public interface PersonService {
@@ -15,5 +18,7 @@ public interface PersonService {
     public void deletePerson(String id);
 
     public List<Person> getByPersonAge(Integer minAge, Integer maxAge);
+
+    public Page<Person> search(String name, Integer minAge, Integer maxAge, String city, Pageable pageable);
 
 }
