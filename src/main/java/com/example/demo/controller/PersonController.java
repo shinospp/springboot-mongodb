@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -82,6 +83,11 @@ public class PersonController {
         Page<Person> page = personService.search(name, minAge, maxAge, city, pageable);
 
         return page;
+    }
+
+    @GetMapping("/oldestPerson")
+    public List<Document> geOldestPerson() {
+        return personService.geOldestPersonByCity();
     }
 
 }

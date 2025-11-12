@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import java.util.List;
 
+import org.bson.Document;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -20,5 +21,7 @@ public interface PersonService {
     public List<Person> getByPersonAge(Integer minAge, Integer maxAge);
 
     public Page<Person> search(String name, Integer minAge, Integer maxAge, String city, Pageable pageable);
+
+    public List<Document> geOldestPersonByCity();
 
 }
