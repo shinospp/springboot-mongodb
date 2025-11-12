@@ -90,4 +90,10 @@ public class PersonController {
         return personService.geOldestPersonByCity();
     }
 
+    @GetMapping("/populationByCity")
+    public List<Document> getPopulationByCity() {
+        return personService.getPopulationByCity();
+    }
+    
+
 }

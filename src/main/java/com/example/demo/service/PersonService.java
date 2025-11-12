@@ -24,4 +24,6 @@ public interface PersonService {
 
     public List<Document> geOldestPersonByCity();
 
+    public List<Document> getPopulationByCity();
+
 }
